@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegracaoGemini", "IntegracaoGemini\IntegracaoGemini.csproj", "{DE90122B-115B-4311-A0C6-504B33155A77}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegracaoGemini.Domain", "IntegracaoGemini.Domain\IntegracaoGemini.Domain.csproj", "{89607D43-5864-411A-980B-10A41E8A8139}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{DE90122B-115B-4311-A0C6-504B33155A77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE90122B-115B-4311-A0C6-504B33155A77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE90122B-115B-4311-A0C6-504B33155A77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89607D43-5864-411A-980B-10A41E8A8139}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89607D43-5864-411A-980B-10A41E8A8139}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89607D43-5864-411A-980B-10A41E8A8139}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89607D43-5864-411A-980B-10A41E8A8139}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
