@@ -2,9 +2,7 @@
 
 public class Text
 {
-    public static string Base = @"baseado no seguinte texto me duas perguntas com 4 alternativas, com apenas um correta
-
-Responda usando esse JSON schema:Exercicio = {'\''pergunta'\'': string, resposta'\'': string}Return: list[Exercicio]. E não adicioe quebras de linha para o JSON.;";
+    public static string Base = @"Faça duas perguntas com 4 alternativas e um texto correto usando esse JSON schema:Exercicio = {'pergunta': string, 'alternativa1': string, 'alternativa2': string, 'alternativa3': string, 'alternativa4': string, 'resposta': string} Return: list[Exercicio]. Responda somente com o JSON e não adicione nenhuma quebra de linha a resposta.";
 
     public static string Programming = @"
 Introdução à Programação
