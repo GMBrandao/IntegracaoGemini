@@ -1,13 +1,12 @@
 ﻿namespace IntegracaoGemini.Domain.Models;
 
-public class Teste
+public class Text
 {
-    public static string a = @"baseado no seguinte texto me duas perguntas com 4 alternativas, com apenas um correta
+    public static string Base = @"baseado no seguinte texto me duas perguntas com 4 alternativas, com apenas um correta
 
-Responda usando esse JSON schema:Exercicio = {'\''pergunta'\'': string, resposta'\'': string}Return: list[Exercicio]. E não adicioe quebras de linha para o JSON.
+Responda usando esse JSON schema:Exercicio = {'\''pergunta'\'': string, resposta'\'': string}Return: list[Exercicio]. E não adicioe quebras de linha para o JSON.;";
 
-
-
+    public static string Programming = @"
 Introdução à Programação
 
 Programação é o processo de criar instruções que dizem ao computador como realizar determinadas tarefas. No mundo moderno, praticamente tudo ao nosso redor depende de software, desde celulares e aplicativos até sistemas complexos de gerenciamento de empresas e inteligência artificial. Com a programação, podemos transformar ideias em soluções, automatizar processos e resolver problemas de maneira eficiente.

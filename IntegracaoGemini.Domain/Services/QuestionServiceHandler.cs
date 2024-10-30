@@ -1,6 +1,7 @@
 ﻿using IntegracaoGemini.Domain.Clients;
 using IntegracaoGemini.Domain.Contracts;
 using IntegracaoGemini.Domain.Models;
+using System.Text;
 
 namespace IntegracaoGemini.Domain.Services;
 
@@ -16,10 +17,13 @@ public sealed class QuestionServiceHandler : IQuestionService
 
     public async Task<string> AskQuestionAsync(string question, CancellationToken cancellationToken)
     {
-        question = Teste.a;
+        var sb = new StringBuilder();
 
-        var x = await _gemini.GenerateContentAsync(question, cancellationToken);
+        sb.AppendLine(Text.Base);
+        sb.AppendLine(Text.Programming);
+        
+        var response = await _gemini.GenerateContentAsync(sb.ToString(), cancellationToken);
 
-        return x;
+        return response;
     }
 }
