@@ -20,7 +20,7 @@ public sealed class QuestionServiceHandler : IQuestionService
     public async Task<QuestionResponse> AskQuestionAsync(string question, CancellationToken cancellationToken)
     {
         string text = Text.Programming;
-        
+
         var sb = new StringBuilder();
 
         sb.AppendLine(Text.Base);
@@ -28,7 +28,7 @@ public sealed class QuestionServiceHandler : IQuestionService
 
         var geminiResponse = await _gemini.GenerateContentAsync(sb.ToString(), cancellationToken);
 
-        var(isValid, questions) = JsonDeserialize(geminiResponse);
+        var (isValid, questions) = DeserializeQuestion(geminiResponse);
 
         var response = new QuestionResponse();
 
@@ -41,12 +41,23 @@ public sealed class QuestionServiceHandler : IQuestionService
         return response;
     }
 
-    public Task<List<ExplanationResponse>> RequestExplanationAsync(List<ExplanationRequest> request, CancellationToken cancellationToken)
+    public async Task<List<ExplanationResponse>> RequestExplanationAsync(List<ExplanationRequest> request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var response = new List<ExplanationResponse>();
+
+        foreach (var x in request)
+        {
+            var prompt = CreateExplanationMessage(x);
+
+            var geminiResponse = await _gemini.GenerateContentAsync(prompt, cancellationToken);
+
+            response.Add(new ExplanationResponse { Pergunta = x.Pergunta, Explicacao = geminiResponse });
+        }
+
+        return response;
     }
 
-    private ValueTuple<bool, List<Question>?> JsonDeserialize(string json)
+    private static ValueTuple<bool, List<Question>?> DeserializeQuestion(string json)
     {
         try
         {
@@ -54,9 +65,14 @@ public sealed class QuestionServiceHandler : IQuestionService
             return (true, response);
 
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             return (false, new List<Question>());
         }
+    }
+
+    private static string CreateExplanationMessage(ExplanationRequest request)
+    {
+        return string.Format(Text.Explanation, request.Pergunta, request.Resposta, request.Assinalada);
     }
 }

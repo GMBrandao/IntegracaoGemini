@@ -1,10 +1,12 @@
 ﻿namespace IntegracaoGemini.Domain.Models;
 
-public class Text
+public static class Text
 {
-    public static string Base = @"Faça duas perguntas com 4 alternativas e um texto correto usando esse JSON schema:Exercicio = {'pergunta': string, 'alternativa1': string, 'alternativa2': string, 'alternativa3': string, 'alternativa4': string, 'resposta': string} Return: list[Exercicio]. Responda somente com o JSON e não adicione nenhuma quebra de linha a resposta.";
+    public const string Base = @"Faça duas perguntas com 4 alternativas e um texto correto usando esse JSON schema:Exercicio = {'pergunta': string, 'alternativa1': string, 'alternativa2': string, 'alternativa3': string, 'alternativa4': string, 'resposta': string} Return: list[Exercicio]. Responda somente com o JSON e não adicione nenhuma quebra de linha a resposta.";
 
-    public static string Programming = @"Introdução à Programação
+    public const string Explanation = "Dê uma explicação sucinta do porque a resposta para essa pergunta: \n{0}\n Tem como resposta: {1} e não {2}";
+
+    public const string Programming = @"Introdução à Programação
 Programação é o processo de criar instruções que dizem ao computador como realizar determinadas tarefas. No mundo moderno, praticamente tudo ao nosso redor depende de software, desde celulares e aplicativos até sistemas complexos de gerenciamento de empresas e inteligência artificial. Com a programação, podemos transformar ideias em soluções, automatizar processos e resolver problemas de maneira eficiente.
 
 
