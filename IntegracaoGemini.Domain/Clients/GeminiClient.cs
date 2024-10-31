@@ -25,7 +25,7 @@ public sealed class GeminiClient
     public async Task<string> GenerateContentAsync(string prompt, CancellationToken cancellationToken)
     {
         var requestBody = GeminiRequestFactory.CreateRequest(prompt);
-        var content = new StringContent(JsonConvert.SerializeObject(requestBody, Formatting.None, _serializerSettings), Encoding.UTF8, "application/json");
+        var content = new StringContent(JsonConvert.SerializeObject(requestBody, Formatting.None , _serializerSettings), Encoding.UTF8, "application/json");
 
         var response = await _httpClient.PostAsync("", content, cancellationToken);
 
@@ -37,6 +37,6 @@ public sealed class GeminiClient
 
         var geminiResponseText = geminiResponse?.Candidates[0].Content.Parts[0].Text;
 
-        return geminiResponseText;
+        return geminiResponseText!;
     }
 }

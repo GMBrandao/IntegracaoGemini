@@ -4,5 +4,7 @@ namespace IntegracaoGemini.Domain.Contracts;
 
 public interface IQuestionService
 {
-    Task<List<Question>> AskQuestionAsync(string question, CancellationToken cancellationToken);
+    Task<QuestionResponse> AskQuestionAsync(string question, CancellationToken cancellationToken);
+
+    Task<List<ExplanationResponse>> RequestExplanationAsync(List<ExplanationRequest> request, CancellationToken cancellationToken);
 }

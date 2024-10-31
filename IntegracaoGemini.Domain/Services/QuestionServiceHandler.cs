@@ -4,7 +4,6 @@ using IntegracaoGemini.Domain.Entities;
 using IntegracaoGemini.Domain.Models;
 using Newtonsoft.Json;
 using System.Text;
-using static Google.Apis.Requests.BatchRequest;
 
 namespace IntegracaoGemini.Domain.Services;
 
@@ -18,18 +17,33 @@ public sealed class QuestionServiceHandler : IQuestionService
         _gemini = gemini;
     }
 
-    public async Task<List<Question>> AskQuestionAsync(string question, CancellationToken cancellationToken)
+    public async Task<QuestionResponse> AskQuestionAsync(string question, CancellationToken cancellationToken)
     {
+        string text = Text.Programming;
+        
         var sb = new StringBuilder();
 
         sb.AppendLine(Text.Base);
-        sb.AppendLine(Text.Programming);
+        sb.AppendLine(text);
 
-        var response = await _gemini.GenerateContentAsync(sb.ToString(), cancellationToken);
+        var geminiResponse = await _gemini.GenerateContentAsync(sb.ToString(), cancellationToken);
 
-        var(isValid, questions) = JsonDeserialize(response);
+        var(isValid, questions) = JsonDeserialize(geminiResponse);
 
-        return isValid ? questions ?? new List<Question>() : new List<Question>();
+        var response = new QuestionResponse();
+
+        if (isValid)
+        {
+            response.Perguntas = questions!;
+            response.Texto = text;
+        }
+
+        return response;
+    }
+
+    public Task<List<ExplanationResponse>> RequestExplanationAsync(List<ExplanationRequest> request, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
     }
 
     private ValueTuple<bool, List<Question>?> JsonDeserialize(string json)
