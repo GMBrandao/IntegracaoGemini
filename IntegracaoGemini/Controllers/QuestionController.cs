@@ -37,7 +37,7 @@ public class QuestionController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> RequestExplanation([FromBody] List<ExplanationRequest> request)
     {
-        CancellationTokenSource cts = new(999999999);
+        CancellationTokenSource cts = new(10000);
         CancellationToken cancellationToken = cts.Token;
 
         var x = await _service.RequestExplanationAsync(request, cancellationToken);
