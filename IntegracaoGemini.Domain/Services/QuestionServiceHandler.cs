@@ -19,7 +19,11 @@ public sealed class QuestionServiceHandler : IQuestionService
 
     public async Task<QuestionResponse> AskQuestionAsync(string question, CancellationToken cancellationToken)
     {
-        string text = Text.Programming;
+        if (string.IsNullOrWhiteSpace(question)) return new();
+
+        string text = DefineQuestionTheme(question);
+
+        if (string.IsNullOrWhiteSpace(text)) return new();
 
         var sb = new StringBuilder();
 
@@ -74,5 +78,18 @@ public sealed class QuestionServiceHandler : IQuestionService
     private static string CreateExplanationMessage(ExplanationRequest request)
     {
         return string.Format(Text.Explanation, request.Pergunta, request.Resposta, request.Assinalada);
+    }
+
+    private static string DefineQuestionTheme(string question)
+    {
+        return (question)
+        switch
+        {
+            "IntProg" => Text.IntProg,
+            "SOeRC" => Text.SOeRC,
+            "HtmleBD" => Text.HtmleBD,
+            "AlgeLogProg" => Text.AlgeLogProg,
+            _ => string.Empty
+        };
     }
 }

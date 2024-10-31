@@ -23,7 +23,7 @@ public class QuestionController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> AskQuestion(string question)
     {
-        CancellationTokenSource cts = new(3000);
+        CancellationTokenSource cts = new(8000);
         CancellationToken cancellationToken = cts.Token;
 
         var response = await _service.AskQuestionAsync(question, cancellationToken);
